@@ -93,6 +93,14 @@ Une plateforme web complète pour découvrir et explorer Annecy, France. Ce guid
 
 Actuellement, le projet utilise des données mockées en mémoire pour le développement et le prototypage.
 
+> **📊 Schéma de Base de Données Disponible** : Un schéma complet et intégral de la base de données est maintenant disponible. Consultez :
+> - [DATABASE_README.md](./DATABASE_README.md) - Vue d'ensemble et documentation
+> - [DATABASE_SCHEMA.md](./DATABASE_SCHEMA.md) - Documentation détaillée des tables
+> - [MIGRATION_GUIDE.md](./MIGRATION_GUIDE.md) - Guide de migration vers PostgreSQL
+> - [DATABASE_DIAGRAM.md](./DATABASE_DIAGRAM.md) - Diagrammes et visualisations
+> - [schema.ts](./schema.ts) - Schéma Drizzle ORM (TypeScript)
+> - [schema.sql](./schema.sql) - Schéma SQL PostgreSQL
+
 ## 🚀 Installation et Utilisation
 
 ### Prérequis
