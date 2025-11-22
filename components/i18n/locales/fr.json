@@ -1,0 +1,81 @@
+
+{
+  "header": {
+    "discover": "Découvrir",
+    "live": "En Direct",
+    "eat": "Où Manger ?",
+    "sleep": "Où Dormir ?",
+    "do": "Quoi Faire ?",
+    "shop": "Shopping & Services",
+    "agenda": "Agenda",
+    "trails": "Sentiers",
+    "magazine": "Magazine",
+    "community": "Communauté",
+    "forums": "Forums",
+    "groups": "Groupes",
+    "members": "Membres",
+    "listings": "Petites Annonces",
+    "all_listings": "Toutes les annonces",
+    "propose": "Proposer un contenu",
+    "login": "Connexion",
+    "signup": "Inscription"
+  },
+  "hero": {
+    "title": "Salut Annecy",
+    "subtitle": "Votre guide pour vivre le meilleur de la région.",
+    "search_placeholder": "Rechercher un restaurant, un sentier, un événement...",
+    "suggestions": "Suggestions:",
+    "suggestion1": "Restaurants",
+    "suggestion2": "Randonnée facile",
+    "suggestion3": "Événements ce week-end"
+  },
+  "featured": {
+    "title": "À la une",
+    "subtitle": "Nos recommandations pour une expérience inoubliable à Annecy."
+  },
+  "agenda": {
+    "title": "L'Agenda du Moment",
+    "subtitle": "Ne manquez rien de ce qu'il se passe à Annecy.",
+    "see_all": "Voir tout l'agenda"
+  },
+  "categories": {
+    "title": "Découvrir par Catégorie",
+    "subtitle": "Trouvez ce que vous cherchez en un clin d'œil.",
+    "cat1": "Où Manger ?",
+    "cat2": "Où Dormir ?",
+    "cat3": "Quoi Faire ?",
+    "cat4": "Shopping"
+  },
+  "latest_listings": {
+    "title": "Dernières Annonces",
+    "subtitle": "Le pouls de la vie locale: emploi, immobilier, bonnes affaires et services.",
+    "see_all": "Voir toutes les annonces"
+  },
+  "magazine": {
+    "title": "Le Magazine",
+    "subtitle": "Histoires, portraits et secrets d'Annecy, racontés par ceux qui y vivent.",
+    "read_all": "Lire tout le magazine"
+  },
+  "footer": {
+    "subtitle": "Votre guide pour vivre le meilleur de la région.",
+    "about": "À propos",
+    "about_us": "Qui sommes-nous ?",
+    "press": "Presse",
+    "contact": "Contact",
+    "legal": "Légal",
+    "cgu": "CGU",
+    "cgv": "CGV",
+    "privacy": "Politique de Confidentialité",
+    "legal_mentions": "Mentions Légales",
+    "support": "Support",
+    "faq": "FAQ",
+    "report": "Signaler un problème",
+    "cookies": "Gestion des cookies",
+    "pro": "Professionnels",
+    "pro_space": "Espace Pro",
+    "offers": "Nos offres",
+    "ads": "Publicité",
+    "partner": "Devenir partenaire",
+    "copyright": "Salut Annecy. Tous droits réservés."
+  }
+}

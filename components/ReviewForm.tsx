@@ -1,7 +1,8 @@
-
 import React, { useState } from 'react';
 import StarRating from './StarRating';
 import { Profile } from '../types';
+import Button from './ui/Button';
+import Textarea from './ui/Textarea';
 
 interface ReviewFormProps {
   currentUser: Profile;
@@ -15,6 +16,7 @@ const StarInput: React.FC<{ rating: number; setRating: (rating: number) => void 
         <div className="flex items-center space-x-1">
             {[1, 2, 3, 4, 5].map((star) => (
                 <button
+                    type="button"
                     key={star}
                     onMouseEnter={() => setHoverRating(star)}
                     onMouseLeave={() => setHoverRating(0)}
@@ -53,21 +55,19 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ currentUser, onSubmit }) => {
                     <div className="my-2">
                         <StarInput rating={rating} setRating={setRating} />
                     </div>
-                    <textarea
+                    <Textarea
                         value={comment}
                         onChange={(e) => setComment(e.target.value)}
                         placeholder="Partagez votre expérience..."
-                        className="w-full h-24 p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-sky-400 focus:outline-none transition-shadow"
                         rows={3}
                     />
                     <div className="mt-2 text-right">
-                        <button
+                        <Button
                             type="submit"
                             disabled={rating === 0 || comment.trim() === ''}
-                            className="px-4 py-2 text-sm font-semibold text-white bg-sky-500 rounded-full hover:bg-sky-600 transition-colors disabled:bg-gray-300 disabled:cursor-not-allowed shadow-sm"
                         >
                             Publier l'avis
-                        </button>
+                        </Button>
                     </div>
                 </form>
             </div>

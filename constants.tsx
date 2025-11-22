@@ -1,3 +1,4 @@
+
 import {
     ContentCard, Event, Category, Listing, ListingType, Article, Place, FilterOption, Profile, Trail, TrailDifficulty,
     ForumCategory, ForumThread, ForumPost, Group, Conversation, Message, StaticPageContent, Organization, PlaceClaim, Product, Service,
@@ -176,10 +177,10 @@ export const ANALYTICS_EVENTS: AnalyticsEvent[] = [
 // --- UI CONSTANTS ---
 
 export const CATEGORIES: Category[] = [
-  { name: 'Où Manger ?', icon: { name: 'utensils', className: 'w-10 h-10 text-rose-500' }, target: 'restaurants' },
-  { name: 'Où Dormir ?', icon: { name: 'bed', className: 'w-10 h-10 text-blue-500' }, target: 'hebergements' },
-  { name: 'Quoi Faire ?', icon: { name: 'hiking', className: 'w-10 h-10 text-emerald-500' }, target: 'activites' },
-  { name: 'Shopping', icon: { name: 'store', className: 'w-10 h-10 text-amber-500' }, target: 'commerces' },
+  { name: 'categories.cat1', icon: { name: 'utensils', className: 'w-10 h-10 text-rose-500' }, target: 'restaurants' },
+  { name: 'categories.cat2', icon: { name: 'bed', className: 'w-10 h-10 text-blue-500' }, target: 'hebergements' },
+  { name: 'categories.cat3', icon: { name: 'hiking', className: 'w-10 h-10 text-emerald-500' }, target: 'activites' },
+  { name: 'categories.cat4', icon: { name: 'store', className: 'w-10 h-10 text-amber-500' }, target: 'commerces' },
 ];
 
 export const LISTING_ICONS: { [key in ListingType]: { name: string, className: string } } = {

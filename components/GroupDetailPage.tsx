@@ -1,6 +1,9 @@
+
 import React from 'react';
 import { Group, Profile, Place } from '../types';
 import Icon from './Icon';
+import Button from './ui/Button';
+import { Card, CardContent } from './ui/Card';
 
 interface GroupDetailPageProps {
   id: string;
@@ -37,51 +40,55 @@ const GroupDetailPage: React.FC<GroupDetailPageProps> = ({ id, groups, profiles,
         <div className="lg:grid lg:grid-cols-3 lg:gap-8">
           {/* Main content */}
           <div className="lg:col-span-2 space-y-8">
-            <div className="bg-white rounded-xl shadow-sm p-6">
-                <h2 className="text-xl font-bold text-gray-800 mb-4">Fil de discussion</h2>
-                 <div className="text-center py-16">
-                    <p className="text-gray-500">Les discussions de groupe arrivent bientôt !</p>
-                 </div>
-            </div>
+            <Card>
+                <CardContent className="p-6 pt-6">
+                    <h2 className="text-xl font-bold text-gray-800 mb-4">Fil de discussion</h2>
+                    <div className="text-center py-16">
+                        <p className="text-gray-500">Les discussions de groupe arrivent bientôt !</p>
+                    </div>
+                </CardContent>
+            </Card>
           </div>
           {/* Sidebar */}
           <aside className="lg:col-span-1 space-y-8 mt-8 lg:mt-0">
-             <div className="bg-white rounded-xl shadow-sm p-6">
-                <button
+             <Card className="p-6">
+                <Button
                     onClick={() => onToggleMembership(group.id)}
                     disabled={!currentUser}
-                    className={`w-full py-3 text-base font-semibold rounded-full transition-colors shadow-sm disabled:bg-gray-300 disabled:cursor-not-allowed ${
-                        isMember 
-                        ? 'bg-white text-rose-600 border border-rose-600 hover:bg-rose-50'
-                        : 'bg-emerald-600 text-white hover:bg-emerald-700'
-                    }`}
+                    variant={isMember ? 'secondary' : 'primary'}
+                    className={`w-full ${isMember ? 'text-rose-600 border-rose-600 hover:bg-rose-50' : 'bg-emerald-600 hover:bg-emerald-700'}`}
+                    size="lg"
                 >
                     {isMember ? 'Quitter le groupe' : 'Rejoindre le groupe'}
-                </button>
-             </div>
-             <div className="bg-white rounded-xl shadow-sm p-6">
+                </Button>
+             </Card>
+             <Card>
+                <CardContent className="p-6 pt-6">
                  <h3 className="text-lg font-bold text-gray-800 mb-4">À propos</h3>
                  <p className="text-sm text-gray-600">{group.description}</p>
-             </div>
-             <div className="bg-white rounded-xl shadow-sm p-6">
-                <h3 className="text-lg font-bold text-gray-800 mb-4">Membres ({group.memberCount})</h3>
-                <div className="space-y-3">
-                    {members.slice(0, 8).map(member => (
-                        <div key={member.id} onClick={() => navigateTo('profile', member.id)} className="flex items-center space-x-3 cursor-pointer p-2 -m-2 rounded-lg hover:bg-slate-100">
-                            <img src={member.avatarUrl} alt={member.fullName} className="w-10 h-10 rounded-full"/>
-                            <div>
-                                <p className="font-semibold text-sm text-gray-700">{member.fullName}</p>
-                                <p className="text-xs text-gray-500">@{member.username}</p>
+                </CardContent>
+             </Card>
+             <Card>
+                <CardContent className="p-6 pt-6">
+                    <h3 className="text-lg font-bold text-gray-800 mb-4">Membres ({group.memberCount})</h3>
+                    <div className="space-y-3">
+                        {members.slice(0, 8).map(member => (
+                            <div key={member.id} onClick={() => navigateTo('profile', member.id)} className="flex items-center space-x-3 cursor-pointer p-2 -m-2 rounded-lg hover:bg-slate-100">
+                                <img src={member.avatarUrl} alt={member.fullName} className="w-10 h-10 rounded-full"/>
+                                <div>
+                                    <p className="font-semibold text-sm text-gray-700">{member.fullName}</p>
+                                    <p className="text-xs text-gray-500">@{member.username}</p>
+                                </div>
                             </div>
-                        </div>
-                    ))}
-                </div>
-                {members.length > 8 && (
-                    <button className="w-full mt-4 py-2 text-sm text-sky-600 font-semibold hover:bg-sky-50 rounded-full">
-                        Voir tous les membres
-                    </button>
-                )}
-             </div>
+                        ))}
+                    </div>
+                    {members.length > 8 && (
+                        <Button variant="secondary" className="w-full mt-4">
+                            Voir tous les membres
+                        </Button>
+                    )}
+                </CardContent>
+             </Card>
           </aside>
         </div>
       </div>

@@ -1,91 +1,69 @@
 import React from 'react';
+import { ForumThread, Profile, Place } from '../types';
 import { FORUM_CATEGORIES } from '../constants';
-import { ForumThread, Place, Profile } from '../types';
 import Icon from './Icon';
+import Button from './ui/Button';
+import { Card, CardContent } from './ui/Card';
 
 interface ForumListPageProps {
   threads: ForumThread[];
   profiles: Profile[];
   navigateTo: (page: string, id?: string, mainCategory?: Place['mainCategory'], query?: string) => void;
-  currentUser: Profile | null;
 }
 
-const CategoryRow: React.FC<{ category: any, navigateTo: (page: string, id: string) => void }> = ({ category, navigateTo }) => (
-    <div className="flex items-start space-x-4 p-4 bg-white rounded-lg shadow-sm transition-shadow hover:shadow-md">
-        <div className="bg-slate-100 p-3 rounded-lg mt-1">
-            <Icon name={category.icon} className="w-6 h-6 text-slate-500" />
+const ThreadRow: React.FC<{ thread: ForumThread, author?: Profile, navigateTo: (page: string, id: string) => void }> = ({ thread, author, navigateTo }) => (
+    <div onClick={() => navigateTo('forum-thread', thread.id)} className="flex items-center justify-between p-4 hover:bg-slate-50 cursor-pointer">
+        <div className="flex items-center space-x-4">
+            <img src={author?.avatarUrl} alt={author?.fullName} className="w-10 h-10 rounded-full" />
+            <div>
+                <h4 className="font-bold text-gray-800">{thread.title}</h4>
+                <p className="text-sm text-gray-500">par {author?.fullName} &middot; {thread.createdAt}</p>
+            </div>
         </div>
-        <div className="flex-1 min-w-0">
-            <a href="#" onClick={(e) => { e.preventDefault(); navigateTo('forum-category', category.id); }} className="font-bold text-lg text-gray-800 hover:text-sky-600 transition-colors truncate">{category.title}</a>
-            <p className="text-sm text-gray-500">{category.description}</p>
-        </div>
-        <div className="hidden sm:flex flex-col text-center w-24">
-            <span className="font-bold text-gray-800">{category.threadCount}</span>
-            <span className="text-xs text-gray-500">Sujets</span>
-        </div>
-        <div className="hidden sm:flex flex-col text-center w-24">
-            <span className="font-bold text-gray-800">{category.postCount}</span>
-            <span className="text-xs text-gray-500">Messages</span>
-        </div>
-        <div className="hidden md:flex items-center space-x-3 w-64 min-w-0">
-            {category.latestThread ? (
-                <>
-                    <img src={category.latestThread.authorAvatar} alt={category.latestThread.authorName} className="w-10 h-10 rounded-full flex-shrink-0" />
-                    <div className="min-w-0">
-                        <a href="#" onClick={(e) => { e.preventDefault(); navigateTo('forum-thread', category.latestThread.id)}} className="font-semibold text-sm text-gray-700 hover:underline truncate block">{category.latestThread.title}</a>
-                        <p className="text-xs text-gray-500">par {category.latestThread.authorName}</p>
-                    </div>
-                </>
-            ) : (
-                <p className="text-sm text-gray-400">Aucun sujet</p>
-            )}
+        <div className="text-right text-sm">
+            <p className="font-semibold">{thread.posts.length}</p>
+            <p className="text-gray-500">réponses</p>
         </div>
     </div>
 );
 
-const ForumListPage: React.FC<ForumListPageProps> = ({ threads, profiles, navigateTo, currentUser }) => {
-    const categoriesWithData = FORUM_CATEGORIES.map(category => {
-        const categoryThreads = threads.filter(t => t.categoryId === category.id);
-        const postCount = categoryThreads.reduce((sum, t) => sum + t.posts.length, 0);
-        const latestThreadData = categoryThreads.length > 0 ? [...categoryThreads].sort((a,b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())[0] : null;
-        const author = latestThreadData ? profiles.find(p => p.id === latestThreadData.authorId) : null;
-        return {
-            ...category,
-            threadCount: categoryThreads.length,
-            postCount: postCount,
-            latestThread: latestThreadData && author ? {
-                id: latestThreadData.id,
-                title: latestThreadData.title,
-                authorName: author.fullName,
-                authorAvatar: author.avatarUrl,
-            } : null,
-        };
-    });
-    
+const ForumListPage: React.FC<ForumListPageProps> = ({ threads, profiles, navigateTo }) => {
   return (
-    <div className="bg-slate-100">
+    <div className="bg-slate-100 min-h-screen">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="flex flex-col sm:flex-row justify-between sm:items-center mb-12">
+        <div className="flex flex-col sm:flex-row justify-between sm:items-center mb-8">
             <div>
                 <h1 className="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl">Forums</h1>
                 <p className="mt-4 max-w-2xl text-xl text-gray-600">
-                    L'espace de discussion de la communauté de Salut Annecy.
+                    Échangez avec la communauté, posez vos questions et partagez vos bons plans.
                 </p>
             </div>
-             <button
-                onClick={() => navigateTo('new-thread')}
-                disabled={!currentUser}
-                className="mt-4 sm:mt-0 px-5 py-3 text-sm font-semibold text-white bg-emerald-600 rounded-full hover:bg-emerald-700 transition-all duration-300 shadow-sm whitespace-nowrap disabled:bg-gray-400 disabled:cursor-not-allowed"
-             >
-                Créer un nouveau sujet
-            </button>
+            <Button onClick={() => navigateTo('new-thread')} size="lg" className="mt-4 sm:mt-0">Créer un sujet</Button>
         </div>
 
-        <div className="space-y-4">
-            {categoriesWithData.map(category => (
-                <CategoryRow key={category.id} category={category} navigateTo={navigateTo} />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+            {FORUM_CATEGORIES.map(cat => (
+                 <Card key={cat.id} onClick={() => navigateTo('forum-category', cat.id)} className="hover:shadow-lg transition-shadow cursor-pointer">
+                    <CardContent className="p-6 flex items-center space-x-4">
+                        <Icon name={cat.icon} className="w-12 h-12 text-sky-500 flex-shrink-0" />
+                        <div>
+                            <h3 className="font-bold text-lg text-gray-800">{cat.title}</h3>
+                            <p className="text-sm text-gray-500 mt-1">{cat.description}</p>
+                        </div>
+                    </CardContent>
+                </Card>
             ))}
         </div>
+
+        <Card>
+             <h2 className="text-2xl font-bold text-gray-800 p-6 border-b">Derniers Sujets</h2>
+             <div className="divide-y divide-gray-200">
+                {threads.slice(0, 10).map(thread => {
+                    const author = profiles.find(p => p.id === thread.authorId);
+                    return <ThreadRow key={thread.id} thread={thread} author={author} navigateTo={navigateTo} />;
+                })}
+             </div>
+        </Card>
       </div>
     </div>
   );

@@ -1,5 +1,9 @@
+
 import React from 'react';
 import { Place, Event, Trail } from '../types';
+import { useTranslation } from './i18n/LanguageContext';
+import { Card } from './ui/Card';
+import Badge from './ui/Badge';
 
 interface FeaturedContentProps {
   places: Place[];
@@ -9,19 +13,23 @@ interface FeaturedContentProps {
 }
 
 const FeaturedCard: React.FC<{ item: any, navigateTo: FeaturedContentProps['navigateTo'] }> = ({ item, navigateTo }) => (
-  <a href="#" onClick={(e) => { e.preventDefault(); navigateTo(item.navPage, item.navId); }} className="group block rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
+  <Card 
+    onClick={(e) => { e.preventDefault(); navigateTo(item.navPage, item.navId); }} 
+    className="group block overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 cursor-pointer"
+  >
     <div className="relative">
       <img src={item.imageUrl} alt={item.title} className="w-full h-56 object-cover" />
       <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
       <div className="absolute bottom-0 left-0 p-4">
-        <span className="text-xs font-bold uppercase tracking-wider bg-sky-500 text-white px-2 py-1 rounded">{item.type}</span>
+        <Badge>{item.type}</Badge>
         <h3 className="text-lg font-semibold text-white mt-2 group-hover:text-sky-300 transition-colors">{item.title}</h3>
       </div>
     </div>
-  </a>
+  </Card>
 );
 
 const FeaturedContent: React.FC<FeaturedContentProps> = ({ places, events, trails, navigateTo }) => {
+  const { t } = useTranslation();
   // Build featured content dynamically from props
   const featuredContent = [
       trails.find(t => t.id === 't1') ? { id: 'feat1', imageUrl: trails.find(t => t.id === 't1')?.imageUrl, title: 'Randonnée au sommet du Semnoz', type: 'Sentier', navPage: 'trail-detail', navId: 't1'} : null,
@@ -32,8 +40,8 @@ const FeaturedContent: React.FC<FeaturedContentProps> = ({ places, events, trail
     
   return (
     <section>
-      <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">À la une</h2>
-      <p className="mt-4 text-lg text-gray-600">Nos recommandations pour une expérience inoubliable à Annecy.</p>
+      <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">{t('featured.title')}</h2>
+      <p className="mt-4 text-lg text-gray-600">{t('featured.subtitle')}</p>
       <div className="mt-8 grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
         {featuredContent.map((item) => (
           <FeaturedCard key={item!.id} item={item} navigateTo={navigateTo} />

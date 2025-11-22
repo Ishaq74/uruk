@@ -1,7 +1,9 @@
+
 import React from 'react';
 import { LISTING_ICONS } from '../constants';
 import { Listing, Place, Profile, ListingType } from '../types';
 import Icon from './Icon';
+import Button from './ui/Button';
 
 interface AnnonceDetailPageProps {
   id: string;
@@ -29,7 +31,7 @@ const AnnonceDetailPage: React.FC<AnnonceDetailPageProps> = ({ id, listings, pro
           {/* Main content */}
           <div className="lg:col-span-2">
             <div className="mb-8">
-                <a href="#" onClick={(e) => { e.preventDefault(); navigateTo('annonces'); }} className="text-sm text-sky-600 hover:underline">&larr; Retour aux annonces</a>
+                <Button variant="link" onClick={(e) => { e.preventDefault(); navigateTo('annonces'); }} className="p-0 h-auto">&larr; Retour aux annonces</Button>
                 <div className="mt-4 flex items-center space-x-2">
                     <div className="w-8 h-8 flex items-center justify-center"><Icon name={iconInfo.name} className={iconInfo.className} /></div>
                     <span className="font-semibold text-gray-500">{annonce.type}</span>
@@ -63,22 +65,23 @@ const AnnonceDetailPage: React.FC<AnnonceDetailPageProps> = ({ id, listings, pro
                             <img src={seller.avatarUrl} alt={seller.fullName} className="w-16 h-16 rounded-full"/>
                             <div>
                                 <p className="font-bold text-gray-800">{seller.fullName}</p>
-                                <a 
-                                    href="#" 
+                                <Button
+                                    variant="link"
                                     onClick={(e) => { e.preventDefault(); navigateTo('profile', seller.id); }} 
-                                    className="text-sm text-sky-600 hover:underline"
+                                    className="p-0 h-auto text-sm"
                                 >
                                     Voir le profil
-                                </a>
+                                </Button>
                             </div>
                         </div>
                         {currentUser && currentUser.id !== seller.id && (
-                            <button 
+                            <Button
                                 onClick={() => onStartConversation(seller.id)}
-                                className="w-full mt-6 py-3 text-base font-semibold text-white bg-sky-500 rounded-full hover:bg-sky-600 transition-colors shadow-sm"
+                                className="w-full mt-6"
+                                size="lg"
                             >
                                 Contacter le vendeur
-                            </button>
+                            </Button>
                         )}
                         {!currentUser && (
                             <p className="text-xs text-center mt-4 text-gray-500">Connectez-vous pour contacter le vendeur.</p>

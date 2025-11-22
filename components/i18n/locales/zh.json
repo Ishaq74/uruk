@@ -1,0 +1,81 @@
+
+{
+  "header": {
+    "discover": "发现",
+    "live": "直播",
+    "eat": "去哪儿吃？",
+    "sleep": "去哪儿睡？",
+    "do": "做什么？",
+    "shop": "购物与服务",
+    "agenda": "日程",
+    "trails": "步道",
+    "magazine": "杂志",
+    "community": "社区",
+    "forums": "论坛",
+    "groups": "群组",
+    "members": "成员",
+    "listings": "分类广告",
+    "all_listings": "所有广告",
+    "propose": "推荐内容",
+    "login": "登录",
+    "signup": "注册"
+  },
+  "hero": {
+    "title": "你好安纳西",
+    "subtitle": "您体验该地区精华的最佳指南。",
+    "search_placeholder": "搜索餐厅、步道、活动...",
+    "suggestions": "建议:",
+    "suggestion1": "餐厅",
+    "suggestion2": "轻松徒步",
+    "suggestion3": "本周末活动"
+  },
+  "featured": {
+    "title": "精选推荐",
+    "subtitle": "我们为您在安纳西的难忘体验提供的建议。",
+  },
+  "agenda": {
+    "title": "当前日程",
+    "subtitle": "不要错过安纳西的任何精彩活动。",
+    "see_all": "查看完整日程"
+  },
+  "categories": {
+    "title": "按类别发现",
+    "subtitle": "一目了然地找到您想要的东西。",
+    "cat1": "去哪儿吃？",
+    "cat2": "去哪儿睡？",
+    "cat3": "做什么？",
+    "cat4": "购物"
+  },
+  "latest_listings": {
+    "title": "最新列表",
+    "subtitle": "当地生活的脉搏：工作、房地产、优惠和服​​务。",
+    "see_all": "查看所有列表"
+  },
+  "magazine": {
+    "title": "杂志",
+    "subtitle": "由当地居民讲述的安纳西的故事、人物和秘密。",
+    "read_all": "阅读整本杂志"
+  },
+  "footer": {
+    "subtitle": "您体验该地区精华的最佳指南。",
+    "about": "关于",
+    "about_us": "我们是谁？",
+    "press": "媒体",
+    "contact": "联系我们",
+    "legal": "法律信息",
+    "cgu": "使用条款",
+    "cgv": "销售条款",
+    "privacy": "隐私政策",
+    "legal_mentions": "法律声明",
+    "support": "支持",
+    "faq": "常见问题",
+    "report": "报告问题",
+    "cookies": "Cookie 管理",
+    "pro": "专业人士",
+    "pro_space": "专业区",
+    "offers": "我们的优惠",
+    "ads": "广告",
+    "partner": "成为合作伙伴",
+    "copyright": "你好安纳西。版权所有。"
+  }
+}

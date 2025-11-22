@@ -1,6 +1,9 @@
+
 import React from 'react';
 import { Place, Profile } from '../types';
 import StarRating from './StarRating';
+import { Card, CardContent } from './ui/Card';
+import Button from './ui/Button';
 
 interface FavoritesPageProps {
   currentUser: Profile | null;
@@ -9,12 +12,12 @@ interface FavoritesPageProps {
 }
 
 const PlaceCard: React.FC<{ item: Place; navigateTo: (page: string, id: string) => void }> = ({ item, navigateTo }) => (
-    <div 
+    <Card 
         onClick={() => navigateTo('place-detail', item.id)}
-        className="group bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 cursor-pointer flex flex-col"
+        className="group overflow-hidden hover:shadow-xl transition-all duration-300 cursor-pointer flex flex-col"
     >
         <img className="h-48 w-full object-cover" src={item.imageUrl} alt={item.name} />
-        <div className="p-6 flex flex-col flex-grow">
+        <CardContent className="p-6 flex flex-col flex-grow pt-6">
             <div>
                 <div className="tracking-wide text-sm text-sky-600 font-bold">{item.category} &middot; {item.priceRange}</div>
                 <h3 className="block mt-1 text-lg leading-tight font-bold text-black group-hover:underline">{item.name}</h3>
@@ -23,8 +26,8 @@ const PlaceCard: React.FC<{ item: Place; navigateTo: (page: string, id: string) 
                 <StarRating rating={item.rating} />
                 <span className="text-gray-600 ml-2 text-sm">({item.reviewCount} avis)</span>
             </div>
-        </div>
-    </div>
+        </CardContent>
+    </Card>
 );
 
 const FavoritesPage: React.FC<FavoritesPageProps> = ({ currentUser, places, navigateTo }) => {
@@ -33,9 +36,9 @@ const FavoritesPage: React.FC<FavoritesPageProps> = ({ currentUser, places, navi
       <div className="text-center py-20">
         <h1 className="text-2xl font-bold text-gray-800">Accès non autorisé</h1>
         <p className="text-gray-600 mt-2">Vous devez être connecté pour voir vos favoris.</p>
-        <button onClick={() => navigateTo('home')} className="mt-4 px-4 py-2 bg-sky-500 text-white rounded-full">
+        <Button onClick={() => navigateTo('home')} className="mt-4">
             Retour à l'accueil
-        </button>
+        </Button>
       </div>
     );
   }
@@ -59,16 +62,16 @@ const FavoritesPage: React.FC<FavoritesPageProps> = ({ currentUser, places, navi
             ))}
           </div>
         ) : (
-          <div className="text-center py-20 bg-white rounded-xl shadow-sm">
+          <Card className="text-center py-20">
             <h2 className="text-2xl font-semibold text-gray-800">Votre liste de favoris est vide</h2>
             <p className="mt-2 text-gray-500">Cliquez sur l'icône ❤️ sur la page d'un lieu pour l'ajouter ici.</p>
-            <button
+            <Button
               onClick={() => navigateTo('restaurants')}
-              className="mt-6 px-5 py-3 text-sm font-semibold text-white bg-emerald-600 rounded-full hover:bg-emerald-700 transition-all duration-300 shadow-sm"
+              className="mt-6 bg-emerald-600 hover:bg-emerald-700"
             >
               Découvrir des lieux
-            </button>
-          </div>
+            </Button>
+          </Card>
         )}
       </div>
     </div>

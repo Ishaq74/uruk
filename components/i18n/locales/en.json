@@ -1,0 +1,81 @@
+
+{
+  "header": {
+    "discover": "Discover",
+    "live": "Live",
+    "eat": "Where to Eat?",
+    "sleep": "Where to Sleep?",
+    "do": "What to Do?",
+    "shop": "Shopping & Services",
+    "agenda": "Agenda",
+    "trails": "Trails",
+    "magazine": "Magazine",
+    "community": "Community",
+    "forums": "Forums",
+    "groups": "Groups",
+    "members": "Members",
+    "listings": "Classifieds",
+    "all_listings": "All listings",
+    "propose": "Suggest content",
+    "login": "Login",
+    "signup": "Sign Up"
+  },
+  "hero": {
+    "title": "Hello Annecy",
+    "subtitle": "Your guide to experience the best of the region.",
+    "search_placeholder": "Search for a restaurant, a trail, an event...",
+    "suggestions": "Suggestions:",
+    "suggestion1": "Restaurants",
+    "suggestion2": "Easy hike",
+    "suggestion3": "Events this weekend"
+  },
+  "featured": {
+    "title": "Featured",
+    "subtitle": "Our recommendations for an unforgettable experience in Annecy."
+  },
+  "agenda": {
+    "title": "Current Agenda",
+    "subtitle": "Don't miss anything happening in Annecy.",
+    "see_all": "See the full agenda"
+  },
+  "categories": {
+    "title": "Discover by Category",
+    "subtitle": "Find what you're looking for at a glance.",
+    "cat1": "Where to Eat?",
+    "cat2": "Where to Sleep?",
+    "cat3": "What to Do?",
+    "cat4": "Shopping"
+  },
+  "latest_listings": {
+    "title": "Latest Listings",
+    "subtitle": "The pulse of local life: jobs, real estate, great deals, and services.",
+    "see_all": "See all listings"
+  },
+  "magazine": {
+    "title": "The Magazine",
+    "subtitle": "Stories, portraits, and secrets of Annecy, told by those who live there.",
+    "read_all": "Read the entire magazine"
+  },
+  "footer": {
+    "subtitle": "Your guide to experience the best of the region.",
+    "about": "About",
+    "about_us": "Who are we?",
+    "press": "Press",
+    "contact": "Contact",
+    "legal": "Legal",
+    "cgu": "Terms of Use",
+    "cgv": "Terms of Sale",
+    "privacy": "Privacy Policy",
+    "legal_mentions": "Legal Notice",
+    "support": "Support",
+    "faq": "FAQ",
+    "report": "Report an issue",
+    "cookies": "Cookie management",
+    "pro": "Professionals",
+    "pro_space": "Pro Area",
+    "offers": "Our offers",
+    "ads": "Advertising",
+    "partner": "Become a partner",
+    "copyright": "Salut Annecy. All rights reserved."
+  }
+}

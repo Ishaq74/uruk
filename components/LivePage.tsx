@@ -1,8 +1,14 @@
+
 import React, { useState, useMemo, useEffect } from 'react';
 import { LIVE_EVENTS, PROFILES, LIVE_EVENT_ICONS } from '../constants';
 import { LiveEvent, LiveEventType, Profile, Place } from '../types';
 import Icon from './Icon';
 import InteractiveMap from './InteractiveMap';
+import { Modal, ModalHeader, ModalTitle, ModalBody, ModalFooter } from './ui/Modal';
+import Button from './ui/Button';
+import { Card, CardContent } from './ui/Card';
+import Select from './ui/Select';
+import Input from './ui/Input';
 
 // --- PROPS ---
 interface LivePageProps {
@@ -25,8 +31,6 @@ const AddEventModal: React.FC<{
     const [title, setTitle] = useState('');
     const [location, setLocation] = useState('');
 
-    if (!isOpen) return null;
-    
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         if (!title.trim() || !location.trim()) {
@@ -39,33 +43,44 @@ const AddEventModal: React.FC<{
         setLocation('');
         setType(LiveEventType.Info);
     };
+    
+    // Clear state when modal closes
+    useEffect(() => {
+        if (!isOpen) {
+            setTitle('');
+            setLocation('');
+            setType(LiveEventType.Info);
+        }
+    }, [isOpen]);
 
     return (
-        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex justify-center items-center p-4" onClick={onClose}>
-            <div className="bg-white rounded-2xl shadow-xl w-full max-w-lg" onClick={e => e.stopPropagation()}>
-                <h2 className="p-6 border-b text-xl font-bold">Signaler un événement</h2>
-                <form onSubmit={handleSubmit} className="p-6 space-y-4">
+        <Modal isOpen={isOpen} onClose={onClose} className="max-w-lg">
+             <form onSubmit={handleSubmit}>
+                <ModalHeader>
+                    <ModalTitle>Signaler un événement</ModalTitle>
+                </ModalHeader>
+                <ModalBody className="space-y-4">
                     <div>
                         <label className="block text-sm font-medium">Type</label>
-                        <select value={type} onChange={e => setType(e.target.value as LiveEventType)} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-sky-500 focus:border-sky-500">
+                        <Select value={type} onChange={e => setType(e.target.value as LiveEventType)} className="mt-1">
                             {Object.values(LiveEventType).map(t => <option key={t} value={t}>{t}</option>)}
-                        </select>
+                        </Select>
                     </div>
                     <div>
                         <label className="block text-sm font-medium">Titre (court et descriptif)</label>
-                        <input type="text" value={title} onChange={e => setTitle(e.target.value)} placeholder="Ex: Grosse affluence au pont des amours" className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-sky-500 focus:border-sky-500" />
+                        <Input type="text" value={title} onChange={e => setTitle(e.target.value)} placeholder="Ex: Grosse affluence au pont des amours" className="mt-1" />
                     </div>
                      <div>
                         <label className="block text-sm font-medium">Lieu (précis)</label>
-                        <input type="text" value={location} onChange={e => setLocation(e.target.value)} placeholder="Ex: Rue Carnot, près de la Fnac" className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-sky-500 focus:border-sky-500" />
+                        <Input type="text" value={location} onChange={e => setLocation(e.target.value)} placeholder="Ex: Rue Carnot, près de la Fnac" className="mt-1" />
                     </div>
-                    <div className="flex justify-end space-x-2 pt-4">
-                        <button type="button" onClick={onClose} className="px-4 py-2 bg-gray-200 text-gray-800 font-semibold rounded-md hover:bg-gray-300">Annuler</button>
-                        <button type="submit" className="px-4 py-2 bg-sky-600 text-white font-semibold rounded-md hover:bg-sky-700">Signaler</button>
-                    </div>
-                </form>
-            </div>
-        </div>
+                </ModalBody>
+                <ModalFooter>
+                    <Button type="button" variant="secondary" onClick={onClose}>Annuler</Button>
+                    <Button type="submit">Signaler</Button>
+                </ModalFooter>
+            </form>
+        </Modal>
     );
 };
 
@@ -138,17 +153,17 @@ const LiveEventCard: React.FC<{
     };
 
     return (
-        <div 
-            className={`bg-white rounded-xl shadow-sm p-4 flex space-x-4 transition-all duration-200 border-2 relative overflow-hidden ${isSelected ? 'border-sky-500 ring-2 ring-sky-500' : 'border-transparent'}`}
+        <Card 
+            className={`p-0 flex space-x-4 transition-all duration-200 relative overflow-hidden ${isSelected ? 'border-sky-500 ring-2 ring-sky-500' : ''}`}
             onMouseEnter={() => onSelect(event.id)}
             onMouseLeave={() => onSelect(null)}
         >
-            <div className="flex flex-col items-center space-y-1 z-10">
+            <div className="flex flex-col items-center space-y-1 z-10 p-4">
                 <button onClick={() => currentUser && onVote(event.id, 'up')} disabled={!currentUser} className={`p-1 rounded-full ${userVote === 'up' ? 'bg-emerald-100 text-emerald-600' : 'text-gray-400 hover:bg-gray-100'}`}><Icon name="arrow-up" className="w-5 h-5"/></button>
                 <span className="font-bold text-lg">{voteCount}</span>
                 <button onClick={() => currentUser && onVote(event.id, 'down')} disabled={!currentUser} className={`p-1 rounded-full ${userVote === 'down' ? 'bg-rose-100 text-rose-600' : 'text-gray-400 hover:bg-gray-100'}`}><Icon name="arrow-down" className="w-5 h-5"/></button>
             </div>
-            <div className="flex-1 z-10">
+            <div className="flex-1 z-10 py-4 pr-4">
                 <div className="flex justify-between items-start">
                     <div className="flex items-center space-x-2">
                         <Icon name={icon} className={`w-5 h-5 ${color}`} />
@@ -164,7 +179,7 @@ const LiveEventCard: React.FC<{
                  <p className="text-xs text-gray-400 mt-2">{timeAgo(event.createdAt)}</p>
             </div>
             <TimeBadge createdAt={event.createdAt} expiresAt={event.expiresAt} />
-        </div>
+        </Card>
     );
 }
 
@@ -218,12 +233,12 @@ const LivePage: React.FC<LivePageProps> = ({ liveEvents: allLiveEvents, profiles
                         <h1 className="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl">En Direct</h1>
                         <p className="mt-4 max-w-2xl text-xl text-gray-600">Le pouls de la ville en temps réel grâce à la communauté.</p>
                     </div>
-                     <button onClick={() => currentUser ? setIsModalOpen(true) : onLogin()} className="mt-4 sm:mt-0 flex items-center space-x-2 px-5 py-3 text-sm font-semibold text-white bg-rose-500 rounded-full hover:bg-rose-600 shadow-sm"><Icon name="alert-triangle" className="w-5 h-5" /><span>Signaler un événement</span></button>
+                     <Button onClick={() => currentUser ? setIsModalOpen(true) : onLogin()} variant="destructive" size="lg" className="mt-4 sm:mt-0 flex items-center space-x-2 bg-rose-500 hover:bg-rose-600 shadow-sm"><Icon name="alert-triangle" className="w-5 h-5" /><span>Signaler un événement</span></Button>
                 </div>
 
                 <div className="lg:grid lg:grid-cols-5 lg:gap-8">
                     <div className="lg:col-span-2">
-                        <div className="bg-white rounded-xl shadow-sm p-4 mb-4">
+                        <Card className="p-4 mb-4">
                              <h3 className="text-lg font-semibold text-gray-900 mb-2">Filtres</h3>
                              <div className="flex flex-wrap gap-2">
                                 {Object.values(LiveEventType).map(type => (
@@ -232,7 +247,7 @@ const LivePage: React.FC<LivePageProps> = ({ liveEvents: allLiveEvents, profiles
                                     </button>
                                 ))}
                             </div>
-                        </div>
+                        </Card>
 
                         {/* Mobile View Toggle */}
                         <div className="lg:hidden flex justify-center mb-4">
@@ -246,7 +261,7 @@ const LivePage: React.FC<LivePageProps> = ({ liveEvents: allLiveEvents, profiles
                              {liveEvents.length > 0 ? (
                                 liveEvents.map(event => <LiveEventCard key={event.id} event={event} profiles={profiles} currentUser={currentUser} onVote={onVote} isSelected={selectedEventId === event.id} onSelect={setSelectedEventId} />)
                              ) : (
-                                <div className="text-center py-16 bg-white rounded-xl"><p className="text-gray-500">Aucun événement en direct pour le moment.</p></div>
+                                <Card className="text-center py-16"><p className="text-gray-500">Aucun événement en direct pour le moment.</p></Card>
                              )}
                         </div>
                     </div>

@@ -1,6 +1,8 @@
+
 import React from 'react';
 import { Place, Profile } from '../types';
 import Icon from './Icon';
+import { Card } from './ui/Card';
 
 interface ProposeContentPageProps {
   currentUser: Profile | null;
@@ -8,18 +10,20 @@ interface ProposeContentPageProps {
 }
 
 const ChoiceCard: React.FC<{ icon: string; title: string; description: string; onClick: () => void; }> = ({ icon, title, description, onClick }) => (
-    <div 
+    <Card 
         onClick={onClick}
-        className="group bg-white p-6 rounded-xl shadow-sm hover:shadow-lg hover:border-sky-500 border-2 border-transparent transition-all duration-300 cursor-pointer flex items-start space-x-4"
+        className="group hover:shadow-lg hover:border-sky-500 border-2 border-transparent transition-all duration-300 cursor-pointer"
     >
-        <div className="bg-sky-100 p-3 rounded-full flex-shrink-0 mt-1">
-            <Icon name={icon} className="w-8 h-8 text-sky-600"/>
+        <div className="p-6 flex items-start space-x-4">
+            <div className="bg-sky-100 p-3 rounded-full flex-shrink-0 mt-1">
+                <Icon name={icon} className="w-8 h-8 text-sky-600"/>
+            </div>
+            <div>
+                <h3 className="text-lg font-bold text-gray-800 group-hover:text-sky-600">{title}</h3>
+                <p className="text-sm text-gray-500 mt-1">{description}</p>
+            </div>
         </div>
-        <div>
-            <h3 className="text-lg font-bold text-gray-800 group-hover:text-sky-600">{title}</h3>
-            <p className="text-sm text-gray-500 mt-1">{description}</p>
-        </div>
-    </div>
+    </Card>
 );
 
 

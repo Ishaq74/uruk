@@ -1,6 +1,10 @@
 
 import React, { useState } from 'react';
 import { Place, Profile } from '../../types';
+import Button from '../ui/Button';
+import Input from '../ui/Input';
+import Select from '../ui/Select';
+import Textarea from '../ui/Textarea';
 
 interface ProposePlaceFormProps {
   currentUser: Profile | null;
@@ -35,38 +39,38 @@ const ProposePlaceForm: React.FC<ProposePlaceFormProps> = ({ currentUser, naviga
     <div className="bg-slate-100">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="max-w-3xl mx-auto">
-            <a href="#" onClick={(e) => { e.preventDefault(); navigateTo('propose'); }} className="text-sm text-sky-600 hover:underline">&larr; Choisir un autre type de contenu</a>
+            <Button variant="link" onClick={(e) => { e.preventDefault(); navigateTo('propose'); }} className="p-0 h-auto">&larr; Choisir un autre type de contenu</Button>
             <h1 className="mt-2 text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl">Proposer un Nouveau Lieu</h1>
           <form onSubmit={handleSubmit} className="mt-8 bg-white p-8 rounded-2xl shadow-lg space-y-6">
                 <div>
                     <label htmlFor="name" className="block text-sm font-medium text-gray-700">Nom du lieu</label>
-                    <input type="text" name="name" id="name" value={formData.name} onChange={handleChange} required className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm" />
+                    <Input type="text" name="name" id="name" value={formData.name} onChange={handleChange} required className="mt-1"/>
                 </div>
                 <div>
                     <label htmlFor="mainCategory" className="block text-sm font-medium text-gray-700">Catégorie Principale</label>
-                    <select id="mainCategory" name="mainCategory" value={formData.mainCategory} onChange={handleChange} className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 rounded-md">
+                    <Select id="mainCategory" name="mainCategory" value={formData.mainCategory} onChange={handleChange} className="mt-1">
                         <option value="restauration">Restauration</option>
                         <option value="hebergement">Hébergement</option>
                         <option value="activites">Activité</option>
                         <option value="commerces">Commerce / Service</option>
-                    </select>
+                    </Select>
                 </div>
                 <div>
                     <label htmlFor="category" className="block text-sm font-medium text-gray-700">Sous-catégorie</label>
-                    <input type="text" name="category" id="category" value={formData.category} onChange={handleChange} required className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm" placeholder="Ex: Savoyard, Hôtel ★★★, ..."/>
+                    <Input type="text" name="category" id="category" value={formData.category} onChange={handleChange} required className="mt-1" placeholder="Ex: Savoyard, Hôtel ★★★, ..."/>
                 </div>
                 <div>
                     <label htmlFor="address" className="block text-sm font-medium text-gray-700">Adresse complète</label>
-                    <input type="text" name="address" id="address" value={formData.address} onChange={handleChange} required className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm" />
+                    <Input type="text" name="address" id="address" value={formData.address} onChange={handleChange} required className="mt-1"/>
                 </div>
                 <div>
                     <label htmlFor="description" className="block text-sm font-medium text-gray-700">Description</label>
-                    <textarea id="description" name="description" rows={4} value={formData.description} onChange={handleChange} required className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm" />
+                    <Textarea id="description" name="description" rows={4} value={formData.description} onChange={handleChange} required className="mt-1" />
                 </div>
             <div className="pt-5 flex justify-end">
-                <button type="submit" className="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-sky-600 hover:bg-sky-700">
+                <Button type="submit">
                     Soumettre pour modération
-                </button>
+                </Button>
             </div>
           </form>
         </div>

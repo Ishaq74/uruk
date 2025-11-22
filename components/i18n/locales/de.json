@@ -1,0 +1,81 @@
+
+{
+  "header": {
+    "discover": "Entdecken",
+    "live": "Live",
+    "eat": "Wo essen?",
+    "sleep": "Wo schlafen?",
+    "do": "Was tun?",
+    "shop": "Einkaufen & Dienstleistungen",
+    "agenda": "Agenda",
+    "trails": "Wanderwege",
+    "magazine": "Magazin",
+    "community": "Gemeinschaft",
+    "forums": "Foren",
+    "groups": "Gruppen",
+    "members": "Mitglieder",
+    "listings": "Kleinanzeigen",
+    "all_listings": "Alle Anzeigen",
+    "propose": "Inhalt vorschlagen",
+    "login": "Anmelden",
+    "signup": "Registrieren"
+  },
+  "hero": {
+    "title": "Hallo Annecy",
+    "subtitle": "Ihr Führer, um das Beste der Region zu erleben.",
+    "search_placeholder": "Suchen Sie ein Restaurant, einen Weg, eine Veranstaltung...",
+    "suggestions": "Vorschläge:",
+    "suggestion1": "Restaurants",
+    "suggestion2": "Leichte Wanderung",
+    "suggestion3": "Events dieses Wochenende"
+  },
+  "featured": {
+    "title": "Im Rampenlicht",
+    "subtitle": "Unsere Empfehlungen für ein unvergessliches Erlebnis in Annecy."
+  },
+  "agenda": {
+    "title": "Aktuelle Agenda",
+    "subtitle": "Verpassen Sie nichts, was in Annecy passiert.",
+    "see_all": "Gesamte Agenda anzeigen"
+  },
+  "categories": {
+    "title": "Nach Kategorie entdecken",
+    "subtitle": "Finden Sie auf einen Blick, was Sie suchen.",
+    "cat1": "Wo essen?",
+    "cat2": "Wo schlafen?",
+    "cat3": "Was tun?",
+    "cat4": "Einkaufen"
+  },
+  "latest_listings": {
+    "title": "Neueste Anzeigen",
+    "subtitle": "Der Puls des lokalen Lebens: Jobs, Immobilien, tolle Angebote und Dienstleistungen.",
+    "see_all": "Alle Anzeigen sehen"
+  },
+  "magazine": {
+    "title": "Das Magazin",
+    "subtitle": "Geschichten, Porträts und Geheimnisse von Annecy, erzählt von denen, die dort leben.",
+    "read_all": "Das ganze Magazin lesen"
+  },
+  "footer": {
+    "subtitle": "Ihr Führer, um das Beste der Region zu erleben.",
+    "about": "Über uns",
+    "about_us": "Wer sind wir?",
+    "press": "Presse",
+    "contact": "Kontakt",
+    "legal": "Rechtliches",
+    "cgu": "Nutzungsbedingungen",
+    "cgv": "Verkaufsbedingungen",
+    "privacy": "Datenschutzrichtlinie",
+    "legal_mentions": "Impressum",
+    "support": "Hilfe",
+    "faq": "FAQ",
+    "report": "Ein Problem melden",
+    "cookies": "Cookie-Verwaltung",
+    "pro": "Profis",
+    "pro_space": "Profi-Bereich",
+    "offers": "Unsere Angebote",
+    "ads": "Werbung",
+    "partner": "Partner werden",
+    "copyright": "Salut Annecy. Alle Rechte vorbehalten."
+  }
+}

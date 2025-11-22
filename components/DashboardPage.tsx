@@ -1,6 +1,8 @@
+
 import React from 'react';
 import { Profile, Place } from '../types';
 import Icon from './Icon';
+import { Card } from './ui/Card';
 
 interface DashboardPageProps {
   currentUser: Profile | null;
@@ -8,11 +10,11 @@ interface DashboardPageProps {
 }
 
 const DashboardCard: React.FC<{ icon: string; title: string; description: string; onClick: () => void; }> = ({ icon, title, description, onClick }) => (
-    <div 
+    <Card 
         onClick={onClick}
-        className="group bg-white p-6 rounded-xl shadow-sm hover:shadow-lg hover:border-sky-500 border-2 border-transparent transition-all duration-300 cursor-pointer transform hover:-translate-y-1"
+        className="group hover:shadow-lg hover:border-sky-500 border-2 border-transparent transition-all duration-300 cursor-pointer transform hover:-translate-y-1"
     >
-        <div className="flex items-center space-x-4">
+        <div className="p-6 flex items-center space-x-4">
             <div className="bg-sky-100 p-3 rounded-full">
                 <Icon name={icon} className="w-6 h-6 text-sky-600"/>
             </div>
@@ -21,7 +23,7 @@ const DashboardCard: React.FC<{ icon: string; title: string; description: string
                 <p className="text-sm text-gray-500 mt-1">{description}</p>
             </div>
         </div>
-    </div>
+    </Card>
 );
 
 
@@ -103,4 +105,5 @@ const DashboardPage: React.FC<DashboardPageProps> = ({ currentUser, navigateTo }
     </div>
   );
 };
+
 export default DashboardPage;

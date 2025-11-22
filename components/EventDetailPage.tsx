@@ -1,6 +1,8 @@
+
 import React from 'react';
 import { Event, Place, Profile } from '../types';
 import Icon from './Icon';
+import Button from './ui/Button';
 
 interface EventDetailPageProps {
   id: string;
@@ -62,9 +64,9 @@ const EventDetailPage: React.FC<EventDetailPageProps> = ({ id, events, navigateT
                  <InfoCard icon="tag" label="Prix">
                   {event.price}
                 </InfoCard>
-                <button className="w-full mt-2 py-3 text-base font-semibold text-white bg-sky-500 rounded-full hover:bg-sky-600 transition-colors shadow-sm">
+                <Button className="w-full mt-2" size="lg" onClick={() => { /* TODO: Add to favorites logic */ }}>
                     Ajouter à mes favoris
-                </button>
+                </Button>
               </div>
 
               {/* Map */}
@@ -76,9 +78,13 @@ const EventDetailPage: React.FC<EventDetailPageProps> = ({ id, events, navigateT
                     className="w-full h-56 object-cover" 
                 />
                  <div className="p-4 bg-slate-50">
-                    <a href={`https://www.google.com/maps/dir/?api=1&destination=${event.coordinates.lat},${event.coordinates.lng}`} target="_blank" rel="noopener noreferrer" className="mt-1 block text-center w-full bg-slate-200 text-slate-800 font-semibold py-2 rounded-lg hover:bg-slate-300 transition-colors">
+                    <Button 
+                      onClick={() => window.open(`https://www.google.com/maps/dir/?api=1&destination=${event.coordinates.lat},${event.coordinates.lng}`, '_blank')} 
+                      variant="secondary" 
+                      className="w-full"
+                    >
                         S'y rendre
-                    </a>
+                    </Button>
                 </div>
               </div>
             </div>
